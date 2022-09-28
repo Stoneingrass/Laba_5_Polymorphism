@@ -120,10 +120,10 @@ public class Main {
             people[nPersons].setSurname(stringScanner.nextLine());
             System.out.print("Input a age (integer number): ");
             people[nPersons].setAge(numberScanner.nextInt());
-            System.out.print("Input a group: ");
 
             //input data if person is student or lecturer
             if (people[nPersons] instanceof Student) {
+                System.out.print("Input a group: ");
                 ((Student)people[nPersons]).setGroup(stringScanner.nextLine());
                 System.out.print("Input a student ticket number: ");
                 ((Student)people[nPersons]).setStudentTicketNumber(stringScanner.nextLine());
