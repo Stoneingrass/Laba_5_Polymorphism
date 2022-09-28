@@ -133,8 +133,6 @@ public class Main {
                 System.out.print("Input a payment: ");
                 ((Lecturer)people[nPersons]).setPayment(numberScanner.nextDouble());
             }
-
-
         } while (!isExit0);
 
         return isExit;
