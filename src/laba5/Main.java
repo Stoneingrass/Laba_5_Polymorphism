@@ -1,5 +1,7 @@
 package laba5;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Scanner;
 
 public class Main {
@@ -91,63 +93,55 @@ public class Main {
                 case 0:
                     //if exit chosen
                     isExit=true;
-                    break;
+                    continue;
                 case 1:
                     //adding a person
                     people[nPersons]=new Person();
-
-                    //input data
-                    System.out.print("Input a name: ");
-                    people[nPersons].setName(stringScanner.nextLine());
-                    System.out.print("Input a surname: ");
-                    people[nPersons].setSurname(stringScanner.nextLine());
-                    System.out.print("Input a age (integer number): ");
-                    people[nPersons].setAge(numberScanner.nextInt());
                     break;
                 case 2:
                     //adding a student
                     people[nPersons]=new Student();
-
-                    //input data
-                    System.out.print("Input a name: ");
-                    people[nPersons].setName(stringScanner.nextLine());
-                    System.out.print("Input a surname: ");
-                    people[nPersons].setSurname(stringScanner.nextLine());
-                    System.out.print("Input a age (integer number): ");
-                    people[nPersons].setAge(numberScanner.nextInt());
-                    System.out.print("Input a group: ");
-                    ((Student)people[nPersons]).setGroup(stringScanner.nextLine());
-                    System.out.print("Input a student ticket number: ");
-                    ((Student)people[nPersons]).setStudentTicketNumber(stringScanner.nextLine());
                     break;
                 case 3:
                     //adding a lecturer
                     people[nPersons]=new Lecturer();
-
-                    //input data
-                    System.out.print("Input a name: ");
-                    people[nPersons].setName(stringScanner.nextLine());
-                    System.out.print("Input a surname: ");
-                    people[nPersons].setSurname(stringScanner.nextLine());
-                    System.out.print("Input a age (integer number): ");
-                    people[nPersons].setAge(numberScanner.nextInt());
-                    System.out.print("Input a cathedra: ");
-                    ((Lecturer)people[nPersons]).setCathedra(stringScanner.nextLine());
-                    System.out.print("Input a payment: ");
-                    ((Lecturer)people[nPersons]).setPayment(numberScanner.nextDouble());
                     break;
                 default:
                     //error
                     isExit0=false;
                     System.out.println("You choose incorrect option, retry please.");
+                    continue;
             }
+
+            //input data (common)
+            System.out.print("Input a name: ");
+            people[nPersons].setName(stringScanner.nextLine());
+            System.out.print("Input a surname: ");
+            people[nPersons].setSurname(stringScanner.nextLine());
+            System.out.print("Input a age (integer number): ");
+            people[nPersons].setAge(numberScanner.nextInt());
+            System.out.print("Input a group: ");
+
+            //input data if person is student or lecturer
+            if (people[nPersons] instanceof Student) {
+                ((Student)people[nPersons]).setGroup(stringScanner.nextLine());
+                System.out.print("Input a student ticket number: ");
+                ((Student)people[nPersons]).setStudentTicketNumber(stringScanner.nextLine());
+            } else if(people[nPersons] instanceof Lecturer) {
+                System.out.print("Input a cathedra: ");
+                ((Lecturer)people[nPersons]).setCathedra(stringScanner.nextLine());
+                System.out.print("Input a payment: ");
+                ((Lecturer)people[nPersons]).setPayment(numberScanner.nextDouble());
+            }
+
+
         } while (!isExit0);
 
         return isExit;
     }
 
     //deletes a person from person list
-    static void deletePerson(Person[] people, int nPersons) {
+    static void deletePerson(Person @NotNull [] people, int nPersons) {
         Scanner numberScanner = new Scanner(System.in);
         int index;
 
@@ -170,7 +164,7 @@ public class Main {
 
     //outputs persons' info
     static void outputInfo(Person[] people, int nPersons) {
-        System.out.println("\n list:");
+        System.out.println("\nPersons list:");
         for (int i=0; i<nPersons; i++) {
             System.out.printf("#%d%n", i+1);
             people[i].printInfo();
