@@ -145,13 +145,13 @@ public class Main {
 
         //index input
         do {
-            System.out.printf("Input person number which you want to delete (1...%d): ", people.length);
+            System.out.printf("Input person number which you want to delete (1...%d): ", nPersons);
             index=numberScanner.nextInt()-1;
 
-            if(index<0 || index >=people.length) {
+            if(index<0 || index >=nPersons) {
                 System.out.println("Enter correct number please.");
             }
-        } while (index<0 || index >=people.length);
+        } while (index<0 || index >=nPersons);
 
         //deleting person
         for (int i=index; i<nPersons-1; i++) {
